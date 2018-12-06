@@ -17,14 +17,14 @@ int main()
  if(my_rank!=0)
  {
    sprintf(msg,"process %d from %d",my_rank,all_proc);
-   MPI_Send(msg,strlen(msg)+1,MPI_CHAR,0,0,MPI_COMM_WORLD);
+   MPI_Send(msg,10,MPI_CHAR,0,0,MPI_COMM_WORLD);
  }
  else
  {
    printf("I am process 0\n");
-   for(int i=0;i<all_proc;++i)
+   for(int i=1;i<all_proc;++i)
    {
-     MPI_Recv(msg,4096,MPI_CHAR,i,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+     MPI_Recv(msg,10,MPI_CHAR,i,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
      printf("%s\n",msg);
    }
  }
