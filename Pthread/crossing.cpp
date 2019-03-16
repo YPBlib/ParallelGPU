@@ -61,6 +61,11 @@ struct thread
         pthread_join(*self,retval);
     }
 
+    void detach()
+    {
+        pthread_detach(pthread_self());
+    }
+
     ~thread()
     {
         if(self)delete self;
@@ -397,7 +402,8 @@ int main(int argc, char* argv[])
 
     for(int i=0;i<car_num+1;++i)
     {
-        handlers[i].join(nullptr);
+        //handlers[i].join(nullptr);
+        //handlers[i].detach();
     }
 
     delete [] handlers;
